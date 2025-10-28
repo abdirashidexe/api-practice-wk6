@@ -1,5 +1,5 @@
 import Header from './components/Header'
-import Main from './components/Main'
+import Item from './components/Item'
 import Footer from './components/Footer'
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Header/>
-      <Main/>
+      <Item/>
       <Footer/>
     </>
   )
