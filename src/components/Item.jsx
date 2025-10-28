@@ -29,10 +29,11 @@ export default function Item() {
         )
     }
 
+    console.log(images);
     return (
         <>
             <p>this is an item component</p>
-            <Picture />
+            <Picture images={images}/>
             <Info/>
             {pokemon !== null && <img src={pokemon.sprites.other['official-artwork'].front_default} alt="" />}
             <button onClick={showNext}>Next</button>
