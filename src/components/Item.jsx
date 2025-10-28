@@ -1,42 +1,45 @@
-import Picture from "./Picture"
-import Info from "./Info"
-import { useState, useEffect } from 'react'
+import Picture from "./Picture";
+import Info from "./Info";
+import { useState, useEffect } from "react";
 
 export default function Item() {
-    const [pokeId, setPokeId] = useState(1)
-    const [pokemon, setPokemon] = useState(null);
-    const [images, setImages] = useState(null);
-    const [loading, setLoading] = useState(true);
+  const [pokeId, setPokeId] = useState(1);
+  const [pokemon, setPokemon] = useState(null);
+  const [images, setImages] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${pokeId}`)
-            .then(res => res.json())
-            .then(pokeData => setPokemon(pokeData));
-            setLoading(false);
-    }, [pokeId]);
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokeId}`)
+      .then((res) => res.json())
+      .then((pokeData) => setPokemon(pokeData));
     
-    useEffect(() => {
-        if (pokemon !== null) setImages(pokemon.sprites.other['official-artwork']);
-    }, [pokemon]);
+  }, [pokeId]);
 
-    function showNext() {
-        setPokeId(prev => prev + 1);
-    }
+  useEffect(() => {
+    if (pokemon !== null) setImages(pokemon.sprites.other["official-artwork"]);
+    setLoading(false);
+  }, [pokemon]);
 
-    if (loading) {
-        return (
-            <h1>Content is loading...</h1>
-        )
-    }
+  function showNext() {
+    setPokeId((prev) => prev + 1);
+    setLoading(true);
+  }
 
-    console.log(images);
+  if (loading) {
     return (
-        <>
-            <p>this is an item component</p>
-            <Picture images={images}/>
-            <Info/>
-            {pokemon !== null && <img src={pokemon.sprites.other['official-artwork'].front_default} alt="" />}
-            <button onClick={showNext}>Next</button>
-        </>
-    )
+      <>
+        <h1>Content is loading...</h1>
+        <div id="loading-div"></div>
+      </>
+    );
+  }
+
+  console.log(images);
+  return (
+    <>
+      {pokemon !== null && <Picture images={images} loading={loading}/>}
+      <Info />
+      <button onClick={showNext}>Next</button>
+    </>
+  );
 }

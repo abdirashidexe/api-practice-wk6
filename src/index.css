@@ -8,3 +8,10 @@ body {
   font-family: 'Poppins', sans-serif;
   color: white
 }
+
+#loading-div {
+  background-color: rgb(248, 0, 0);
+  width: 80%;
+  height: 80%;
+  transition: 3mm;
+}
