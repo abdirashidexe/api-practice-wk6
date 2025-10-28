@@ -14,10 +14,10 @@ export default function Item() {
             .then(pokeData => setPokemon(pokeData));
             setLoading(false);
     }, [pokeId]);
-
-    console.log(pokemon);
-
-    if (pokemon !== null) setImages(pokemon.sprites.other['official-artwork']);
+    
+    useEffect(() => {
+        if (pokemon !== null) setImages(pokemon.sprites.other['official-artwork']);
+    }, [pokemon]);
 
     function showNext() {
         setPokeId(prev => prev + 1);
