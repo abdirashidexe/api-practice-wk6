@@ -28,8 +28,6 @@ useEffect(() => {
     .catch(() => setError(true));
 }, [pokeId]);
 
-
-
   useEffect(() => {
     if (pokemon !== null) setImages(pokemon.sprites.other["official-artwork"]);
     setLoading(false);
